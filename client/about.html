@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - Kindergarden School</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #fffef4, #e6f7e6);
+      color: #333;
+      padding: 20px;
+      animation: fadeIn 1s ease;
+    }
+
+    header {
+      background: linear-gradient(to right, #8f00ff, #ffce00);
+      padding: 20px 40px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .text {
+      flex: 1 1 400px;
+    }
+
+    .text h1 {
+      color: #d97706;
+      font-size: 2.2rem;
+    }
+
+    .text h2 {
+      color: #047857;
+      margin-bottom: 20px;
+    }
+
+    .text p {
+      font-size: 1rem;
+      margin: 10px 0;
+    }
+
+    .text ul {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+
+    .text ul li {
+      margin-bottom: 10px;
+    }
+
+    .image {
+      flex: 1 1 300px;
+      text-align: center;
+    }
+
+    .image img {
+      width: 250px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      border: 3px solid #bbf7d0;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: #555;
+      padding: 20px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .image img {
+        width: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>Kindergarden School Lonara</h2>
+    <nav>
+      <a href="home.html">Home</a>
+     <a href="about.html">About Us</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="fees.html">Fees structure</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="text">
+      <h1>Kindergarden School Lonara</h1>
+      <h2>Where Little Minds Grow</h2>
+      <p>We believe in providing quality education, nurturing every child's curiosity and creativity.</p>
+
+      <h2 style="color: #b45309;">Our Mission</h2>
+      <p>We are committed to creating a safe, joyful, and engaging learning environment focused on the holistic development of young children.</p>
+      <p><strong>At Kindergarden Lonara</strong>, we foster creativity, kindness, and a love for learning through play and exploration.</p>
+
+      <ul>
+        <li>✔️ Experienced and caring teachers</li>
+        <li>✔️ Modern classrooms and play areas</li>
+        <li>✔️ Activity-based curriculum</li>
+        <li>✔️ Individual attention for every child</li>
+      </ul>
+    </div>
+
+    <div class="image">
+      <img src="https://png.pngtree.com/png-clipart/20250416/original/pngtree-adorable-3d-school-kid-with-math-elements-learning-concept-illustration-png-image_20823533.png" alt="Happy child illustration">
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025  Kindergarden | All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

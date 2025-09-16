@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admission Form - Kindergarden</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom right, #fff0f5, #e0f7fa);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(to right, #ff99cc, #9966ff);
+      color: white;
+      text-align: center;
+      padding: 50px 20px 30px;
+      animation: slideDown 1s ease;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    header::after {
+      content: "🎈";
+      font-size: 80px;
+      position: absolute;
+      top: 15px;
+      right: 30px;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .form-container {
+      background: #fff;
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      animation: fadeInUp 1.2s ease;
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #6a1b9a;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      color: #444;
+    }
+
+    input, select, textarea {
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #a855f7;
+      box-shadow: 0 0 8px rgba(168, 85, 247, 0.3);
+      outline: none;
+    }
+
+    button {
+      background: linear-gradient(to right, #f472b6, #8b5cf6);
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 15px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: linear-gradient(to right, #8b5cf6, #f472b6);
+    }
+
+    footer {
+      margin-top: auto;
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Admission Form</h1>
+    <p>Fill in the details to enroll your child 🎓</p>
+  </header>
+
+  <div class="form-container">
+    <h2>Child Admission Details</h2>
+    <form action="#" method="POST">
+      <label for="child-name">Child's Full Name:</label>
+      <input type="text" id="child-name" name="child_name" required />
+
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" required />
+
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender" required>
+        <option value="">-- Select --</option>
+        <option value="boy">Boy</option>
+        <option value="girl">Girl</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="parent-name">Parent/Guardian Name:</label>
+      <input type="text" id="parent-name" name="parent_name" required />
+
+      <label for="email">Parent's Email:</label>
+      <input type="email" id="email" name="email" />
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" required />
+
+      <label for="address">Home Address:</label>
+      <textarea id="address" name="address" rows="3" required></textarea>
+
+      <label for="message">Additional Message (optional):</label>
+      <textarea id="message" name="message" rows="3"></textarea>
+
+      <button type="submit">Submit Application</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Kindergarden Lonara | Bringing joy to learning ✨</p>
+  </footer>
+<script>
+  const admitForm = document.querySelector('form');
+  admitForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = {
+      child_name: document.getElementById('child-name').value.trim(),
+      dob: document.getElementById('dob').value,
+      gender: document.getElementById('gender').value,
+      parent_name: document.getElementById('parent-name').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      address: document.getElementById('address').value.trim(),
+      message: document.getElementById('message').value.trim()
+    };
+
+    try {
+      const res = await fetch('http://localhost:5000/api/admission', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || 'Server error');
+      }
+      alert('✅ Application submitted. We will contact you soon!');
+      admitForm.reset();
+    } catch (err) {
+      console.error(err);
+      alert('⚠️ Could not submit application. Try again later.');
+    }
+  });
+</script>
+
+</body>
+</html>

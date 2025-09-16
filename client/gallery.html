@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gallery - Kindergarten School</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom right, #fef6e4, #e0f7fa);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: linear-gradient(to right, #ff99cc, #9966ff);
+      color: white;
+      padding: 40px 20px 30px;
+      text-align: center;
+      animation: slideDown 1s ease;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(to right, #ffffff, #ffd700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gallery-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      animation: fadeInUp 1.2s ease;
+    }
+
+    .card {
+      background: #ffffffdd;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 4px solid #9966ff;
+    }
+
+    .card h3 {
+      margin: 15px 0 10px;
+      color: #663399;
+    }
+
+    .card p {
+      padding: 0 15px 20px;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      margin-top: auto;
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+
+    /* Lightbox popup style */
+    #lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.5);
+    }
+
+    #lightbox #close {
+      position: absolute;
+      top: 20px; right: 30px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Our Gallery</h1>
+    <p>Beautiful Memories from Our Kindergarden</p>
+  </header>
+
+  <div class="gallery-container">
+    <!-- Cards -->
+    <div class="card">
+      <img src="img/pic6.jpg" alt="Annual Day">
+      <h3>Annual Day</h3>
+      <p>Traditional and modern dances by our students.</p>
+    </div>
+    <div class="card">
+      <img src="img/pic3.jpg" alt="Sports Meet">
+      <h3>Sports Meet</h3>
+      <p>Exciting sports and fun activities for kids.</p>
+    </div>
+    <div class="card">
+      <img src="img/pic5.jpg" alt="Art Competition">
+      <h3>Art Competition</h3>
+      <p>Little artists expressing their creativity.</p>
+    </div>
+    <div class="card">
+      <img src="img/pic2.jpg" alt="Joyful Learning">
+      <h3>Joyful Learning</h3>
+      <p>Exploring curiosity with fun experiments.</p>
+    </div>
+    <div class="card">
+      <img src="img/pic1.jpg" alt="Fun Activity">
+      <h3>Fun Activity</h3>
+      <p>Kids enjoying activity sessions.</p>
+    </div>
+    <div class="card">
+      <img src="img/pic3.jpg" alt="Learning Together">
+      <h3>Learning Together</h3>
+      <p>Kids exploring knowledge with fun.</p>
+    </div>
+  </div>
+
+  <!-- Lightbox Popup -->
+  <div id="lightbox">
+    <span id="close">&times;</span>
+    <img id="lightbox-img" src="" alt="Expanded Image">
+  </div>
+
+  <footer>
+    &copy; 2025 Kindergarden School 
+  </footer>
+
+  <script>
+  // Get elements
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const closeBtn = document.getElementById("close");
+
+  // For each image in gallery
+  document.querySelectorAll(".gallery-container img").forEach(img => {
+    img.addEventListener("click", () => {
+      lightbox.style.display = "flex";
+      lightboxImg.src = img.src;
+    });
+  });
+
+  // Close button
+  closeBtn.addEventListener("click", () => {
+    lightbox.style.display = "none";
+  });
+
+  // Close on background click
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) {
+      lightbox.style.display = "none";
+    }
+  });
+  </script>
+
+</body>
+</html>

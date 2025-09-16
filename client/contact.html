@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact Us - Kindergarten School</title>
+  <style>
+    /* ==== Your Styling Applied ==== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom right, #fef6e4, #e0f7fa);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: linear-gradient(to right, #ff99cc, #9966ff);
+      color: white;
+      padding: 40px 20px 30px;
+      text-align: center;
+      animation: slideDown 1s ease;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(to right, #ffffff, #ffd700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .contact-container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 25px;
+      background: #ffffffdd;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      animation: fadeInUp 1.2s ease;
+    }
+
+    .contact-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #663399;
+    }
+
+    .contact-info {
+      margin-bottom: 25px;
+    }
+
+    .contact-info p {
+      margin: 8px 0;
+      font-size: 1.1rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #9966ff;
+      box-shadow: 0 0 5px rgba(153,102,255,0.4);
+    }
+
+    button {
+      background: linear-gradient(to right, #ff99cc, #9966ff);
+      border: none;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      padding: 12px;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      margin-top: auto;
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+
+    /* Animations */
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Contact Us</h1>
+    <p>We would love to hear from you!</p>
+  </header>
+
+  <div class="contact-container">
+    <h2>Get in Touch</h2>
+
+    <div class="contact-info">
+      <p><strong>📍 Address:</strong> Kindergarden School, Lonara, Nagpur, 441111</p>
+      <p><strong>📞 Phone:</strong> +91 7058456148</p>
+      <p><strong>✉️ Email:</strong> kindergarden.edu.in@gmail.com</p>
+    </div>
+
+    <!-- ===== UPDATED FORM (AJAX to backend) ===== -->
+    <form id="contactForm">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+
+  <footer>
+    &copy; 2025 Kindergarten School | All Rights Reserved
+  </footer>
+
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value
+      };
+
+      try {
+        const response = await fetch("http://localhost:5000/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          alert("✅ " + result.message);
+          document.getElementById("contactForm").reset();
+        } else {
+          alert("❌ Error: " + result.error);
+        }
+      } catch (err) {
+        alert("❌ Could not connect to server.");
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>
